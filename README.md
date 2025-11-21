@@ -280,7 +280,7 @@ The app supports **English** (default) and **Arabic** languages with full RTL (R
 
 ## 🔗 Live Demo
 
-_Add demo link if hosted_
+<video src="democomplete_V1.mp4" width="600" controls></video>
 
 
 ## 👤 Author
