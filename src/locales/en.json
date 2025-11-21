@@ -1,0 +1,48 @@
+{
+  "auth": {
+    "signIn": {
+      "title": "Login Here",
+      "subtitle": "Welcome Back you have been missed!",
+      "email": "Email",
+      "password": "Password",
+      "loginButton": "Login",
+      "noAccount": "Don't have an account?",
+      "signUpLink": "Sign Up",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required"
+    },
+    "signUp": {
+      "title": "Sign Up Here",
+      "subtitle": "Welcome to the app!",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "signUpButton": "Sign Up",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Login",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password must be at least 8 characters long"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "enableBiometric": "Enable {{type}} Authentication",
+    "logout": "Logout",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "cancel": "Cancel",
+    "language": "Language",
+    "selectLanguage": "Select Language"
+  },
+  "common": {
+    "language": "Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "selectLanguage": "Select Language"
+  },
+  "home": {
+    "searchForEvents": "Search for events"
+  }
+}

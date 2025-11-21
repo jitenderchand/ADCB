@@ -10,12 +10,18 @@ import { RootStackParamList } from "@/routes/RootStackNavigation";
 import theme from "@/style/theme";
 import { useBiometric } from "@/common/hooks/useBiometric";
 import { getData, STORAGE_KEYS } from "@/utils/storage";
+import { useTranslation } from "react-i18next";
+import LanguageModal from "@/common/components/LanguageModal";
 
 export default function ProfilePage() {
+  const { t, i18n } = useTranslation();
   const navigation = useNavigation();
   const { user, logout } = useContext(AuthContext);
   const { isSupported: isBiometricSupported, biometricType } = useBiometric();
   const [isBiometricEnabled, setIsBiometricEnabled] = useState(false);
+  const [languageModalVisible, setLanguageModalVisible] = useState(false);
+
+  const currentLanguage = i18n.language || "en";
 
   useEffect(() => {
     checkBiometricStatus();
@@ -35,15 +41,15 @@ export default function ProfilePage() {
 
   const handleLogout = () => {
     Alert.alert(
-      "Logout",
-      "Are you sure you want to logout?",
+      t("profile.logout"),
+      t("profile.logoutConfirm"),
       [
         {
-          text: "Cancel",
+          text: t("profile.cancel"),
           style: "cancel",
         },
         {
-          text: "Logout",
+          text: t("profile.logout"),
           style: "destructive",
           onPress: async () => {
             try {
@@ -88,7 +94,7 @@ export default function ProfilePage() {
             flex={1}
             textAlign="center"
           >
-            Profile
+            {t("profile.title")}
           </Text>
         </View>
         <View flex={1} backgroundColor="white">
@@ -122,6 +128,33 @@ export default function ProfilePage() {
 
           {/* Settings List */}
           <View paddingHorizontal="l" marginTop="xl">
+            {/* Language Switcher */}
+            <TouchableOpacity
+              style={styles.listItem}
+              onPress={() => setLanguageModalVisible(true)}
+              activeOpacity={0.7}
+            >
+              <View flexDirection="row" alignItems="center" flex={1}>
+                <Ionicons
+                  name="language"
+                  size={24}
+                  color={theme.colors.primary500}
+                  style={{ marginRight: 12 }}
+                />
+                <Text variant="body" color="primaryText" flex={1}>
+                  {t("common.language")}
+                </Text>
+                <Text variant="body" color="secondaryText" marginRight="s">
+                  {currentLanguage === "en" ? "English" : "العربية"}
+                </Text>
+                <Ionicons
+                  name="chevron-forward"
+                  size={20}
+                  color={theme.colors.secondary}
+                />
+              </View>
+            </TouchableOpacity>
+
             {/* Biometric Enable List Item */}
             {isBiometricSupported && !isBiometricEnabled && (
               <TouchableOpacity
@@ -137,7 +170,7 @@ export default function ProfilePage() {
                     style={{ marginRight: 12 }}
                   />
                   <Text variant="body" color="primaryText" flex={1}>
-                    Enable {biometricType} Authentication
+                    {t("profile.enableBiometric", { type: biometricType })}
                   </Text>
                 </View>
                 <Ionicons
@@ -162,7 +195,7 @@ export default function ProfilePage() {
                   style={{ marginRight: 12 }}
                 />
                 <Text variant="body" color="error" flex={1}>
-                  Logout
+                  {t("profile.logout")}
                 </Text>
               </View>
               <Ionicons
@@ -173,6 +206,11 @@ export default function ProfilePage() {
             </TouchableOpacity>
           </View>
         </View>
+
+        <LanguageModal
+          visible={languageModalVisible}
+          onClose={() => setLanguageModalVisible(false)}
+        />
       </SafeAreaView>
     </SafeAreaProvider>
   );

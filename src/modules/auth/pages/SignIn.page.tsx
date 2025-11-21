@@ -25,25 +25,31 @@ import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import theme from "@/style/theme";
 import train from "@/assets/train.json";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcherButton from "@/common/components/LanguageSwitcherButton";
+import { TFunction } from "i18next";
 
-const loginSchema = z.object({
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Please enter a valid email address"),
+const createLoginSchema = (t: TFunction<"translation">) =>
+  z.object({
+    email: z
+      .string()
+      .nonempty(t("auth.signIn.emailRequired"))
+      .email(t("auth.signIn.emailInvalid")),
 
-  password: z.string().nonempty("Password is required"),
-});
-
-type LoginSchema = z.infer<typeof loginSchema>;
+    password: z.string().nonempty(t("auth.signIn.passwordRequired")),
+  });
 
 export default function SignIn() {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const { width, height } = useWindowDimensions();
   const { setUser } = useContext(AuthContext);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
   const [showPassword, setShowPassword] = useState(false);
+
+  const loginSchema = createLoginSchema(t);
+  type LoginSchema = z.infer<typeof loginSchema>;
 
   useEffect(() => {
     Animated.parallel([
@@ -116,6 +122,7 @@ export default function SignIn() {
                 {
                   opacity: fadeAnim,
                   transform: [{ translateY: slideAnim }],
+                  alignItems: "center",
                 },
               ]}
             >
@@ -123,13 +130,14 @@ export default function SignIn() {
                 style={styles.container}
                 alignItems="center"
                 paddingTop="7xl"
+                width={300}
               >
-                <View flex={1} alignItems="center">
+                <View flex={1} alignItems="center" alignSelf="stretch">
                   <Text variant="header" color="primary">
-                    Login Here
+                    {t("auth.signIn.title")}
                   </Text>
                   <Text variant="body" marginTop="l">
-                    Welcome Back you have been missed!
+                    {t("auth.signIn.subtitle")}
                   </Text>
                   <View marginTop="2xl" alignSelf="stretch">
                     <Controller
@@ -143,7 +151,7 @@ export default function SignIn() {
                             onChangeText={onChange}
                             autoCapitalize="none"
                             keyboardType="email-address"
-                            label="Email"
+                            label={t("auth.signIn.email")}
                             hasError={!!errors.email}
                           />
                           <ErrorText message={errors.email?.message} />
@@ -158,7 +166,7 @@ export default function SignIn() {
                       render={({ field: { onChange, onBlur, value } }) => (
                         <>
                           <TextInput
-                            label="Password"
+                            label={t("auth.signIn.password")}
                             secureTextEntry={!showPassword}
                             onChangeText={onChange}
                             value={value}
@@ -196,7 +204,7 @@ export default function SignIn() {
                       disabled={isPending}
                       isLoading={isPending}
                     >
-                      Login
+                      {t("auth.signIn.loginButton")}
                     </Button>
                   </View>
                   <View
@@ -210,7 +218,7 @@ export default function SignIn() {
                       alignItems="center"
                     >
                       <Text variant="subtle" textAlign="center">
-                        Don't have an account?
+                        {t("auth.signIn.noAccount")}
                       </Text>
                       <Button
                         variant="ghost"
@@ -220,10 +228,11 @@ export default function SignIn() {
                           )
                         }
                       >
-                        Sign Up
+                        {t("auth.signIn.signUpLink")}
                       </Button>
                     </View>
                   </View>
+                  <LanguageSwitcherButton />
                 </View>
               </View>
             </Animated.View>

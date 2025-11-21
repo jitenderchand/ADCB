@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, TextInput, TextInputProps, ViewStyle } from "react-native";
 import { View } from "./index";
+import { useTranslation } from "react-i18next";
 import { Ionicons } from "@expo/vector-icons";
 import theme from "@/style/theme";
 
@@ -20,7 +21,7 @@ export default function SearchInput({
 }: SearchInputProps) {
   const [searchText, setSearchText] = useState(value || "");
   const debounceTimerRef = React.useRef<NodeJS.Timeout | null>(null);
-
+  const { t } = useTranslation();
   const handleTextChange = (text: string) => {
     setSearchText(text);
 
@@ -73,7 +74,7 @@ export default function SearchInput({
       />
       <TextInput
         style={styles.input}
-        placeholder="Search events..."
+        placeholder={t("home.searchForEvents")}
         placeholderTextColor={theme.colors.secondary}
         value={searchText}
         onChangeText={handleTextChange}

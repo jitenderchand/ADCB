@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const STORAGE_KEYS = {
   USER: "USER",
   BIOMETRIC_ENABLED: "BIOMETRIC_ENABLED",
+  LANGUAGE: "LANGUAGE",
 } as const;
 
 type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];

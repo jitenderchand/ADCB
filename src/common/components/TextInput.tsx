@@ -9,8 +9,10 @@ import {
   TextStyle,
   ViewStyle,
   TouchableOpacity,
+  I18nManager,
 } from "react-native";
-import { useTheme } from "@shopify/restyle";
+import { backgroundColor, useTheme } from "@shopify/restyle";
+import { useTranslation } from "react-i18next";
 import theme, { Theme } from "@/style/theme";
 
 interface FloatingLabelInputProps extends TextInputProps {
@@ -39,8 +41,10 @@ export default function FloatingLabelInput({
   rightIcon,
   ...rest
 }: FloatingLabelInputProps) {
+  const { i18n } = useTranslation();
   const [isFocused, setIsFocused] = useState(false);
   const animated = useRef(new Animated.Value(value ? 1 : 0)).current;
+  const isRTL = i18n.language === "ar";
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -64,7 +68,7 @@ export default function FloatingLabelInput({
 
   const labelStyle = {
     position: "absolute" as const,
-    left: 12,
+    ...(isRTL ? { right: 12 } : { left: 12 }),
     backgroundColor: animated.interpolate({
       inputRange: [0, 1],
       outputRange: ["transparent", theme.colors.cardBackground],
@@ -104,7 +108,7 @@ export default function FloatingLabelInput({
           style={[
             styles.input,
             inputStyle,
-            rightIcon && styles.inputWithIcon,
+
             {
               borderColor: hasError
                 ? theme.colors.error
@@ -116,6 +120,8 @@ export default function FloatingLabelInput({
                 : isFocused
                 ? activeBackgroundColor
                 : inactiveBackgroundColor,
+              textAlign: isRTL ? "right" : "left",
+              writingDirection: isRTL ? "rtl" : "ltr",
             },
           ]}
           {...rest}
@@ -125,7 +131,11 @@ export default function FloatingLabelInput({
           }}
         />
         {rightIcon && (
-          <View style={styles.rightIconContainer}>{rightIcon}</View>
+          <View
+            style={isRTL ? styles.leftIconContainer : styles.rightIconContainer}
+          >
+            {rightIcon}
+          </View>
         )}
       </View>
     </View>
@@ -146,9 +156,20 @@ const styles = StyleSheet.create({
   inputWithIcon: {
     paddingRight: 40,
   },
+  inputWithIconRTL: {
+    paddingLeft: 40,
+  },
   rightIconContainer: {
     position: "absolute",
     right: 12,
+    top: 0,
+    bottom: 0,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  leftIconContainer: {
+    position: "absolute",
+    left: 12,
     top: 0,
     bottom: 0,
     justifyContent: "center",

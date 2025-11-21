@@ -10,16 +10,12 @@ export default {
   slug: "citypulse",
   version: "1.0.0",
   icon: "./assets/icon.png",
+  orientation: "portrait",
   android: {
     package: "com.adcb.citypulse",
   },
   ios: {
     bundleIdentifier: "com.adcb.citypulse",
-  },
-  splash: {
-    image: "./assets/splash_test.png",
-    resizeMode: "cover",
-    backgroundColor: "#000000",
   },
   plugins: [
     "expo-font",

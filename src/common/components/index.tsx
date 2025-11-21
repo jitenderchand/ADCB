@@ -61,3 +61,5 @@ export {
   SkeletonImage,
   SkeletonAvatar,
 } from "./SkeletonLoader";
+export { default as LanguageModal } from "./LanguageModal";
+export { default as LanguageSwitcherButton } from "./LanguageSwitcherButton";

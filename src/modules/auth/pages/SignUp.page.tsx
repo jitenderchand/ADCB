@@ -25,25 +25,30 @@ import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native";
 import theme from "@/style/theme";
 import train from "@/assets/train.json";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcherButton from "@/common/components/LanguageSwitcherButton";
 
-const signUpSchema = z.object({
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Please enter a valid email address"),
+const createSignUpSchema = (t: any) =>
+  z.object({
+    email: z
+      .string()
+      .nonempty(t("auth.signUp.emailRequired"))
+      .email(t("auth.signUp.emailInvalid")),
 
-  password: z.string().min(8, "Password must be at least 8 characters long"),
-  name: z.string().nonempty("Name is required"),
-});
-
-type SignUpSchema = z.infer<typeof signUpSchema>;
+    password: z.string().min(8, t("auth.signUp.passwordRequired")),
+    name: z.string().nonempty(t("auth.signUp.nameRequired")),
+  });
 
 export default function SignIn() {
+  const { t } = useTranslation();
   const navigation = useNavigation();
   const { width, height } = useWindowDimensions();
   const { setUser } = useContext(AuthContext);
   const { isSupported: isBiometricSupported } = useBiometric();
   const [showPassword, setShowPassword] = useState(false);
+
+  const signUpSchema = createSignUpSchema(t);
+  type SignUpSchema = z.infer<typeof signUpSchema>;
 
   const { mutate, isPending, isError, error } = useMutation({
     mutationFn: ({ email, password, name }: SignUpSchema) =>
@@ -116,10 +121,10 @@ export default function SignIn() {
             >
               <View flex={1} alignItems="center" alignSelf="stretch">
                 <Text variant="header" color="primary">
-                  Sign Up Here
+                  {t("auth.signUp.title")}
                 </Text>
                 <Text variant="body" marginTop="l">
-                  Welcome to the app!
+                  {t("auth.signUp.subtitle")}
                 </Text>
                 <View marginTop="2xl" alignSelf="stretch">
                   <Controller
@@ -132,7 +137,7 @@ export default function SignIn() {
                           onBlur={onBlur}
                           onChangeText={onChange}
                           autoCapitalize="none"
-                          label="Name"
+                          label={t("auth.signUp.name")}
                           hasError={!!errors.name}
                         />
                         <ErrorText message={errors.name?.message} />
@@ -152,7 +157,7 @@ export default function SignIn() {
                           onChangeText={onChange}
                           autoCapitalize="none"
                           keyboardType="email-address"
-                          label="Email"
+                          label={t("auth.signUp.email")}
                           hasError={!!errors.email}
                         />
                         <ErrorText message={errors.email?.message} />
@@ -167,7 +172,7 @@ export default function SignIn() {
                     render={({ field: { onChange, onBlur, value } }) => (
                       <>
                         <TextInput
-                          label="Password"
+                          label={t("auth.signUp.password")}
                           secureTextEntry={!showPassword}
                           onChangeText={onChange}
                           value={value}
@@ -205,7 +210,7 @@ export default function SignIn() {
                     disabled={isPending}
                     isLoading={isPending}
                   >
-                    Sign Up
+                    {t("auth.signUp.signUpButton")}
                   </Button>
                 </View>
                 <View
@@ -219,7 +224,7 @@ export default function SignIn() {
                     alignItems="center"
                   >
                     <Text variant="subtle" textAlign="center">
-                      Already have an account?
+                      {t("auth.signUp.hasAccount")}
                     </Text>
                     <Button
                       variant="ghost"
@@ -229,10 +234,11 @@ export default function SignIn() {
                         )
                       }
                     >
-                      Login
+                      {t("auth.signUp.loginLink")}
                     </Button>
                   </View>
                 </View>
+                <LanguageSwitcherButton />
               </View>
             </View>
           </ScrollView>

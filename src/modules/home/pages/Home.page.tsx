@@ -12,6 +12,7 @@ import EventMapView from "../components/EventMapView";
 import EventGridView from "../components/EventGridView";
 import { Event } from "@/common/types/event";
 import { HomeStackParamList } from "@/routes/HomeStackNavigator";
+import { useTranslation } from "react-i18next";
 import { SearchInput, NoResults } from "@/common/components";
 import { VIEW_TYPES, ViewType } from "../constants/viewTypes";
 
@@ -21,7 +22,7 @@ export default function HomePage() {
   const navigation = useNavigation<NavigationProp>();
   const [searchKeyword, setSearchKeyword] = useState<string>("");
   const [viewType, setViewType] = useState<ViewType>(VIEW_TYPES.GRID);
-
+  const { t } = useTranslation();
   const handleMarkerPress = (event: Event) => {
     navigation.navigate("EventDetail", { event });
   };
@@ -57,7 +58,7 @@ export default function HomePage() {
                 fontWeight="bold"
                 color="white"
               >
-                Search for events
+                {t("home.searchForEvents")}
               </Text>
             </View>
             <View

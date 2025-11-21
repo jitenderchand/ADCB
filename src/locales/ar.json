@@ -1,0 +1,48 @@
+{
+  "auth": {
+    "signIn": {
+      "title": "تسجيل الدخول هنا",
+      "subtitle": "مرحباً بعودتك! لقد افتقدناك!",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "loginButton": "تسجيل الدخول",
+      "noAccount": "ليس لديك حساب؟",
+      "signUpLink": "إنشاء حساب",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+      "passwordRequired": "كلمة المرور مطلوبة"
+    },
+    "signUp": {
+      "title": "إنشاء حساب هنا",
+      "subtitle": "مرحباً بك في التطبيق!",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "signUpButton": "إنشاء حساب",
+      "hasAccount": "لديك حساب بالفعل؟",
+      "loginLink": "تسجيل الدخول",
+      "nameRequired": "الاسم مطلوب",
+      "emailRequired": "البريد الإلكتروني مطلوب",
+      "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+      "passwordRequired": "يجب أن تكون كلمة المرور 8 أحرف على الأقل"
+    }
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "enableBiometric": "تفعيل المصادقة {{type}}",
+    "logout": "تسجيل الخروج",
+    "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "cancel": "إلغاء",
+    "language": "اللغة",
+    "selectLanguage": "اختر اللغة"
+  },
+  "common": {
+    "language": "اللغة",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "selectLanguage": "اختر اللغة"
+  },
+  "home": {
+    "searchForEvents": "ابحث عن حدث"
+  }
+}
