@@ -264,20 +264,31 @@ The app supports **English** (default) and **Arabic** languages with full RTL (R
 
 ## 📸 Screenshots
 
-_Add screenshots of your app here_
+<img width="1080" height="2400" alt="Screenshot_1763725153" src="https://github.com/user-attachments/assets/c46818c9-6b5d-4d70-8897-900ed8117c08" />
+<img width="1080" height="2400" alt="Screenshot_1763725159" src="https://github.com/user-attachments/assets/d6157651-e425-4767-80f8-cd9ca6c4ac81" />
+<img width="1080" height="2400" alt="Screenshot_1763725169" src="https://github.com/user-attachments/assets/97cb07e2-c434-4c0f-840b-857cb22b5b04" />
+<img width="1080" height="2400" alt="Screenshot_1763725174" src="https://github.com/user-attachments/assets/542a0ed4-d0ef-424f-a322-db90408de107" />
+<img width="1080" height="2400" alt="Screenshot_1763725177" src="https://github.com/user-attachments/assets/004c6fc6-6528-4786-b93b-5fe5f4972e77" />
+<img width="1080" height="2400" alt="Screenshot_1763725182" src="https://github.com/user-attachments/assets/8244c7fd-b8d7-436f-88e9-b69b3bdf7bf8" />
+<img width="1080" height="2400" alt="Screenshot_1763725187" src="https://github.com/user-attachments/assets/51e896e2-3bf0-4d44-8164-8d46ef86d799" />
+<img width="1080" height="2400" alt="Screenshot_1763725191" src="https://github.com/user-attachments/assets/848224e6-d63b-4402-8cc3-ca9a4bd2c1e5" />
+<img width="1080" height="2400" alt="Screenshot_1763725195" src="https://github.com/user-attachments/assets/eff0234b-bc2e-4c50-a557-2be9bc38e618" />
+<img width="1080" height="2400" alt="Screenshot_1763725212" src="https://github.com/user-attachments/assets/7ab337a2-3516-4d5f-95a6-2cb20af7e3cf" />
+<img width="1080" height="2400" alt="Screenshot_1763725548" src="https://github.com/user-attachments/assets/98603fc8-3ec4-4e08-bb57-b2259aff6390" />
+
+
 
 ## 🔗 Live Demo
 
 _Add demo link if hosted_
 
-## 📄 License
-
-_Add license information_
 
 ## 👤 Author
 
-_Add author information_
+Jitender Chand
 
 ---
 
 **Note**: This project uses Supabase for authentication. Firebase integration is not implemented as per project requirements.
+
+
