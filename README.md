@@ -280,7 +280,7 @@ The app supports **English** (default) and **Arabic** languages with full RTL (R
 
 ## 🔗 Live Demo
 
-<video src="democomplete_V1.mp4" width="600" controls></video>
+https://www.kapwing.com/videos/6920ac831a016345983bcca5
 
 
 ## 👤 Author
