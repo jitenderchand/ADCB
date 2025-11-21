@@ -43,6 +43,7 @@
     "selectLanguage": "Select Language"
   },
   "home": {
-    "searchForEvents": "Search for events"
+    "searchForEvents": "Search for events",
+    "loadingEvents": "Loading events..."
   }
 }

@@ -31,6 +31,36 @@ A React Native mobile application for exploring local events using the Ticketmas
 
 - ✗ Firebase (Auth, Firestore, or Storage) - Using Supabase instead
 
+## 🔐 Authentication
+
+### Supabase Authentication
+
+This app uses **Supabase** for user authentication instead of Firebase.
+
+### Important Notes:
+
+- **Sign Up & Login**: After signup, you can navigate within the app immediately. However, due to technical limitations on Supabase that require additional setup, after logging out you cannot use the same credentials to log in again. This is a known limitation that would require additional Supabase email verification configuration.
+- **Test Credentials**: For testing login functionality, you can use the following credentials:
+  - **Email**: `jitendra.chand13@gmail.com`
+  - **Password**: `hello@123`
+
+### Authentication Flow:
+
+1. **Sign Up** → User registration → Ask Biometric screen (if supported) → App
+2. **Sign In** → Direct to App
+3. **Biometric Validation** → If biometric is enabled, user must authenticate on app launch
+
+## 🗺️ Google Maps API Key
+
+⚠️ **Important**: The app currently uses a dummy Google Maps API key for development purposes. **If you want to run the application in a standalone APK, you must replace it with an actual Google Maps API key**. However, in Expo Go, the app will work fine with the dummy key.
+
+To set up an actual Google Maps API key:
+
+- Get your API key from [Google Cloud Console](https://console.cloud.google.com/)
+- Enable "Maps SDK for Android" and "Maps SDK for iOS" APIs
+- Add the key to your `.env.development` file as `GOOGLE_MAPS_API_KEY`
+- Also update `src/utils/globalConfig.ts` if you're using the `googleMapKey` property directly
+
 ## 📄 Pages
 
 1. **Splash Screen** (`InitialScreen`) - App launch screen with Lottie animation
@@ -87,6 +117,7 @@ A React Native mobile application for exploring local events using the Ticketmas
      DISCOVERY_API_URL=your_ticketmaster_api_url
      DISCOVERY_API_KEY=your_ticketmaster_api_key
      DISCOVERY_API_SECRET=your_ticketmaster_api_secret
+     GOOGLE_MAPS_API_KEY=your_google_maps_api_key
      ```
 
 4. **Run the application**
@@ -119,25 +150,6 @@ A React Native mobile application for exploring local events using the Ticketmas
    - Ensure your mobile device and computer are on the same Wi-Fi network
    - If QR code doesn't work, use the tunnel option: `npx expo start --tunnel`
    - For Android, you may need to use `npx expo start --android`
-
-## 🔐 Authentication
-
-### Supabase Authentication
-
-This app uses **Supabase** for user authentication instead of Firebase.
-
-### Important Notes:
-
-- **Email Verification**: After signup, you can navigate to the app, but you may need to verify your email to use the same login credentials again.
-- **Test Credentials**: For testing purposes, you can use:
-  - **Email**: `jitendra.chand13@gmail.com`
-  - **Password**: `hello@123`
-
-### Authentication Flow:
-
-1. **Sign Up** → User registration → Ask Biometric screen (if supported) → App
-2. **Sign In** → Direct to App
-3. **Biometric Validation** → If biometric is enabled, user must authenticate on app launch
 
 ## 🗂️ Project Structure
 
@@ -190,6 +202,7 @@ src/
 - Filter by city (default: Dubai, UAE)
 - Real-time search with debouncing
 - No results handling
+- **Note**: Pagination is not implemented - the app fetches a fixed number of events (50) per search
 
 ### Map & Grid Views
 
@@ -243,9 +256,11 @@ The app supports **English** (default) and **Arabic** languages with full RTL (R
 
 ## 🐛 Known Issues
 
-- Email verification required for Supabase authentication (use test credentials for immediate access)
+- **Authentication**: After signup, users can navigate within the app, but after logout cannot use the same credentials due to Supabase technical limitations requiring additional email verification setup. Use test credentials for login testing.
 - Biometric authentication may not work in Expo Go (requires development build for full functionality)
 - Language change with full RTL layout reload only works in release builds (development mode requires manual restart)
+- **Maps**: The app currently uses a dummy Google Maps API key. Replace it with an actual key in `.env.development` and `src/utils/globalConfig.ts` to see maps properly
+- **Pagination**: Pagination is not implemented. The app fetches a fixed number of events (50) per search and does not support loading more events or navigating through pages
 
 ## 📸 Screenshots
 

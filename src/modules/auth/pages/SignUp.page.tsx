@@ -66,7 +66,11 @@ export default function SignIn() {
 
   const handleNavigate = () => {
     if (isBiometricSupported) {
-      navigation.navigate("AskBiometric" as never);
+      navigation.dispatch(
+        StackActions.replace(
+          "AskBiometric" as keyof PublicRouteParamList["AskBiometric"]
+        )
+      );
     } else {
       navigation.dispatch(
         StackActions.replace("App" as keyof RootStackParamList)

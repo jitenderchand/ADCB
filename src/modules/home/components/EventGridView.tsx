@@ -14,6 +14,7 @@ import theme from "@/style/theme";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { HomeStackParamList } from "@/routes/HomeStackNavigator";
+import { useTranslation } from "react-i18next";
 
 type NavigationProp = NativeStackNavigationProp<HomeStackParamList>;
 
@@ -32,7 +33,7 @@ export default function EventGridView({
   onEventPress,
 }: EventGridViewProps) {
   const navigation = useNavigation<NavigationProp>();
-
+  const { t } = useTranslation();
   const handleEventPress = (event: Event) => {
     if (onEventPress) {
       onEventPress(event);
@@ -111,7 +112,7 @@ export default function EventGridView({
   if (isLoading) {
     return (
       <View flex={1} justifyContent="center" alignItems="center">
-        <Text>Loading events...</Text>
+        <Text>{t("home.loadingEvents")}</Text>
       </View>
     );
   }

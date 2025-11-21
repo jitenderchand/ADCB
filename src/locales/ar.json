@@ -43,6 +43,7 @@
     "selectLanguage": "اختر اللغة"
   },
   "home": {
-    "searchForEvents": "ابحث عن حدث"
+    "searchForEvents": "ابحث عن حدث",
+    "loadingEvents": "جاري تحميل الحدث"
   }
 }

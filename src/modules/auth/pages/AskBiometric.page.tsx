@@ -47,11 +47,6 @@ export default function AskBiometric() {
   };
 
   const handleSkip = () => {
-    navigateToApp();
-  };
-
-  const navigateToApp = () => {
-    // Check if we can go back (meaning we came from within App)
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else {
@@ -60,6 +55,12 @@ export default function AskBiometric() {
         StackActions.replace("App" as keyof RootStackParamList)
       );
     }
+  };
+
+  const navigateToApp = () => {
+    navigation.dispatch(
+      StackActions.replace("App" as keyof RootStackParamList)
+    );
   };
 
   return (
@@ -120,7 +121,7 @@ export default function AskBiometric() {
           </Text>
 
           {/* Buttons */}
-          <View width="80%">
+          <View width="90%">
             {isSupported && (
               <Button
                 variant="primary"
@@ -128,9 +129,7 @@ export default function AskBiometric() {
                 disabled={isLoading}
                 isLoading={isLoading}
                 marginBottom="m"
-                flex={1}
                 alignSelf="stretch"
-                alignItems="center"
               >
                 <View paddingRight="s">
                   <Ionicons
@@ -139,7 +138,7 @@ export default function AskBiometric() {
                     color="white"
                   />
                 </View>
-                <View marginLeft="l">
+                <View>
                   <Text color="white" fontWeight="600">
                     Enable {biometricType}
                   </Text>

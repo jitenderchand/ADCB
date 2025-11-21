@@ -13,6 +13,11 @@ export default {
   orientation: "portrait",
   android: {
     package: "com.adcb.citypulse",
+    config: {
+      googleMaps: {
+        apiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
+    },
   },
   ios: {
     bundleIdentifier: "com.adcb.citypulse",
