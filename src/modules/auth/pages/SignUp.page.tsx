@@ -59,8 +59,6 @@ export default function SignIn() {
     },
   });
 
-  console.log("isBiometricSupported", isBiometricSupported);
-
   const handleNavigate = () => {
     if (isBiometricSupported) {
       navigation.navigate("AskBiometric" as never);
@@ -182,7 +180,7 @@ export default function SignIn() {
                               activeOpacity={0.7}
                             >
                               <Ionicons
-                                name={showPassword ? "eye-off" : "eye"}
+                                name={showPassword ? "eye" : "eye-off"}
                                 size={20}
                                 color={theme.colors.black}
                               />

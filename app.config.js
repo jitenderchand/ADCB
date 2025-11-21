@@ -6,14 +6,42 @@ dotenv.config({
 });
 
 export default {
-  expo: {
-    extra: {
-      databaseUrl: process.env.DATABASE_URL,
-      supabaseKey: process.env.PUBLIC_ANON,
-      supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
-      DISCOVERY_API_URL: process.env.DISCOVERY_API_URL,
-      DISCOVERY_API_KEY: process.env.DISCOVERY_API_KEY,
-      DISCOVERY_API_SECRET: process.env.DISCOVERY_API_SECRET,
-    },
+  name: "citypulse",
+  slug: "citypulse",
+  version: "1.0.0",
+  icon: "./assets/icon.png",
+  android: {
+    package: "com.adcb.citypulse",
+  },
+  ios: {
+    bundleIdentifier: "com.adcb.citypulse",
+  },
+  splash: {
+    image: "./assets/splash_test.png",
+    resizeMode: "cover",
+    backgroundColor: "#000000",
+  },
+  plugins: [
+    "expo-font",
+    [
+      "expo-splash-screen",
+      {
+        image: "./assets/icon.png",
+        resizeMode: "cover",
+        backgroundColor: "#000000",
+        // optional:
+        android: {
+          statusBarTranslucent: true,
+        },
+      },
+    ],
+  ],
+  extra: {
+    databaseUrl: process.env.DATABASE_URL,
+    supabaseKey: process.env.PUBLIC_ANON,
+    supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    DISCOVERY_API_URL: process.env.DISCOVERY_API_URL,
+    DISCOVERY_API_KEY: process.env.DISCOVERY_API_KEY,
+    DISCOVERY_API_SECRET: process.env.DISCOVERY_API_SECRET,
   },
 };
